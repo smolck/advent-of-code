@@ -1,0 +1,4 @@
+#include <string>
+
+const std::string DAY_ONE_EXAMPLE_INPUT(R"STR(@day1-example-input@)STR");
+const std::string DAY_ONE_INPUT(R"STR(@day1-input@)STR");
