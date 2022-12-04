@@ -5,3 +5,6 @@ const std::string DAY_ONE_INPUT(R"STR(@day1-input@)STR");
 
 const std::string DAY_TWO_EXAMPLE_INPUT(R"STR(@day2-example-input@)STR");
 const std::string DAY_TWO_INPUT(R"STR(@day2-input@)STR");
+
+const std::string DAY_THREE_EXAMPLE_INPUT(R"STR(@day3-example-input@)STR");
+const std::string DAY_THREE_INPUT(R"STR(@day3-input@)STR");
