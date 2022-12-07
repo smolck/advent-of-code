@@ -9,15 +9,19 @@ N_DAYS = 4
 
 conf_data = configuration_data()
 
+decls = ''
+
 foreach i : range(1, N_DAYS)
   name = 'day' + i.to_string()
 
   example_input = fs.read('inputs/@0@-example.txt'.format(name))
-  conf_data.set('@0@-example-input'.format(name), example_input)
+  decls += 'const std::string DAY@0@_EXAMPLE_INPUT(R"STR(@1@)STR");\n'.format(i, example_input)
 
   input = fs.read('inputs/@0@.txt'.format(name))
-  conf_data.set('@0@-input'.format(name), input)
+  decls += 'const std::string DAY@0@_INPUT(R"STR(@1@)STR");\n'.format(i, input)
 endforeach
+
+conf_data.set('input-decls', decls)
 
 configure_file(input : 'config.h.in',
   output : 'config.h',

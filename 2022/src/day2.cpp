@@ -110,9 +110,9 @@ int answerPartTwo(const std::string& input) {
 }
 
 int main() {
-    std::cout << "Example part 1 answer: " << answerPartOne(DAY_TWO_EXAMPLE_INPUT) << "\n";
-    std::cout << "Example part 2 answer: " << answerPartTwo(DAY_TWO_EXAMPLE_INPUT) << "\n";
+    std::cout << "Example part 1 answer: " << answerPartOne(DAY2_EXAMPLE_INPUT) << "\n";
+    std::cout << "Example part 2 answer: " << answerPartTwo(DAY2_EXAMPLE_INPUT) << "\n";
 
-    std::cout << "Part 1 answer: " << answerPartOne(DAY_TWO_INPUT) << "\n";
-    std::cout << "Part 2 answer: " << answerPartTwo(DAY_TWO_INPUT) << "\n";
+    std::cout << "Part 1 answer: " << answerPartOne(DAY2_INPUT) << "\n";
+    std::cout << "Part 2 answer: " << answerPartTwo(DAY2_INPUT) << "\n";
 }
