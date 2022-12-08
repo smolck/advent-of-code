@@ -1,30 +1,24 @@
 #include <iostream>
 #include <sstream>
-#include <tuple>
-#include <functional>
+#include <utility>
 
 #include "config.h"
 
-template <typename T, typename SomeOtherLetterIdk>
-using tup = std::tuple<T, SomeOtherLetterIdk>;
-
-tup<int, int> parseRange(const std::string& str) {
-    auto it = str.find('-');
-
-    return std::make_pair(std::stoi(str.substr(0, it)), std::stoi(str.substr(it + 1, str.length())));
+bool rangesOverlap(const std::pair<int, int>& range1, const std::pair<int, int>& range2) {
+    return (range1.first <= range2.first && range1.second >= range2.second)
+        || (range2.first <= range1.first && range2.second >= range1.second);
 }
 
 int partOneAnswer(const std::string& input) {
     std::stringstream ss(input);
-
     int total = 0;
 
     for (std::string line; std::getline(ss, line); ) {
-        auto it = line.find(',');
-        auto [start1, end1] = parseRange(line.substr(0, it));
-        auto [start2, end2] = parseRange(line.substr(it + 1, line.length()));
-
-        if ((start1 <= start2 && end1 >= end2) || (start2 <= start1 && end2 >= end1)) {
+        std::istringstream iss(line);
+        std::pair<int, int> range1, range2;
+        char c;
+        iss >> range1.first >> c >> range1.second >> c >> range2.first >> c >> range2.second;
+        if (rangesOverlap(range1, range2)) {
             total++;
         }
     }
@@ -34,22 +28,20 @@ int partOneAnswer(const std::string& input) {
 
 int partTwoAnswer(const std::string& input) {
     std::stringstream ss(input);
-
     int total = 0;
 
     for (std::string line; std::getline(ss, line); ) {
-        auto it = line.find(',');
-        auto [start1, end1] = parseRange(line.substr(0, it));
-        auto [start2, end2] = parseRange(line.substr(it + 1, line.length()));
+        std::istringstream iss(line);
+        std::pair<int, int> range1, range2;
+        char c;
+        iss >> range1.first >> c >> range1.second >> c >> range2.first >> c >> range2.second;
 
-        if ((start1 <= start2 && end1 >= end2)
-            || (start2 <= start1 && end2 >= end1)
-
+        if (rangesOverlap(range1, range2)
             // Part two exclusive
-            || (start1 <= start2 && end1 >= start2)
-            || (start2 <= start1 && end2 >= start1)
-            || (end1 >= end2 && start1 <= end2)
-            || (end2 >= end1 && start2 <= end1)
+            || (range1.first <= range2.first && range1.second >= range2.first)
+            || (range2.first <= range1.first && range2.second >= range1.first)
+            || (range1.second >= range2.second && range1.first <= range2.second)
+            || (range2.second >= range1.second && range2.first <= range1.second)
         ) {
             total++;
         }
