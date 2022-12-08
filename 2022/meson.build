@@ -5,7 +5,7 @@ project('advent-of-code', 'cpp',
 
 fs = import('fs')
 
-N_DAYS = 4
+N_DAYS = 5
 
 conf_data = configuration_data()
 
